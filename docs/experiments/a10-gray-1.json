@@ -1,0 +1,111 @@
+{
+  "record_type": "transcribed_server_evidence",
+  "provenance": {
+    "source": "User-provided terminal output and JSON in the project conversation",
+    "assistant_ran_server_commands": false,
+    "server_png_and_raw_tensors_available_to_assistant": false,
+    "absolute_home_paths_omitted": true,
+    "scope": "One gray IR/VIS pair; inference and precision comparison, not paper evaluation"
+  },
+  "inference": {
+    "created_at_utc": "2026-09-25T17:04:00.758371+00:00",
+    "repository": {
+      "revision": "d73cbf8ff69d2173fd0ae6cadf03737e13b799d3",
+      "dirty": false
+    },
+    "source_sha256": {
+      "test_image.py": "136a7b1c95829a008015d7942417bfccde9e8ed1212fda3fdf3da6ccfddd09bc",
+      "utils.py": "4f1878378293169ace5f6e7bb24f70a0c74cbf36e8dde77aab35a69ba2dbbd9c",
+      "net.py": "c84e53354548cd5160d4d3d35c0779f379398333e00823aa1ddd7e5023d70cfc",
+      "fusion_strategy.py": "e0bb395a7eb7e26ee68934a884e9b66d6c85bde3f1f40c617c115fdf184580c3",
+      "args_fusion.py": "e25b7cd7832ca9b7e6e34a935cac36e90dc77c5b36d98ba597b91f8f3e1da4a0"
+    },
+    "inputs": {
+      "ir": {"path": "images/IV_images/IR1.png", "sha256": "48c385413b4a0bef685c81ad79e7be217a2187b73c2f453be79777200bb4be42"},
+      "vis": {"path": "images/IV_images/VIS1.png", "sha256": "c8f49cec84bfdefb1ad2522a2749444925e76f9d43bb972e365c1112deacd290"}
+    },
+    "checkpoint": {"path": "models/densefuse_gray.model", "sha256": "b34cf3650f04161b31ac2467decfeedf7eba39165b7618f846e0f298ecd2ac65"},
+    "checkpoint_training_config": null,
+    "fusion": "arithmetic_mean",
+    "mode": "L",
+    "dtype": "float32",
+    "input_range": "0-255; no normalization or resizing",
+    "device": "cuda:0",
+    "gpu": "NVIDIA A10",
+    "runtime": {
+      "python": "3.11.16",
+      "platform": "Linux-4.18.0-477.10.1.el8_8.x86_64-x86_64-with-glibc2.28",
+      "torch": "2.7.1+cu118",
+      "torchvision": "0.22.1+cu118",
+      "numpy": "1.26.4",
+      "pillow": "10.4.0",
+      "cuda": "11.8",
+      "cudnn": 90100
+    },
+    "backend": {
+      "cudnn_enabled": true,
+      "cudnn_benchmark": false,
+      "cudnn_deterministic": false,
+      "cudnn_allow_tf32": true,
+      "matmul_allow_tf32": false,
+      "deterministic_algorithms": false,
+      "mkldnn_enabled": true,
+      "cpu_threads": 32
+    },
+    "raw_output": {
+      "shape": [1, 1, 270, 360],
+      "finite": true,
+      "min": 42.93285369873047,
+      "max": 211.39358520507812
+    },
+    "output": {
+      "path": "outputs/a10-gray-1.png",
+      "sha256": "50cbb181fca62fbebcb9d9914f32066ac360702c8e8586e4db1f7a8e256696b9",
+      "pixel_sha256": "a885c3f3b36776611664cfb3d558b5b8d148eb15eaee067a490754c2d1a50147",
+      "pixel_shape_hwc": [270, 360, 1],
+      "conversion": "clamp(0,255), CHW to HWC, uint8 truncation"
+    }
+  },
+  "regression_suite": {
+    "tests_reported": 17,
+    "skipped": 1,
+    "status": "OK",
+    "elapsed_seconds": 14.777
+  },
+  "device_comparison": {
+    "torch": "2.7.1+cu118",
+    "gpu": "NVIDIA A10",
+    "cpu_threads": 32,
+    "shape": [1, 1, 270, 360],
+    "initial_backend": {
+      "cudnn_allow_tf32": true,
+      "matmul_allow_tf32": false,
+      "cudnn_benchmark": false,
+      "cudnn_deterministic": false
+    },
+    "cpu_vs_gpu_default": {
+      "raw_max_abs_difference": 0.1436920166015625,
+      "raw_mean_abs_difference": 0.016508804603859232,
+      "uint8_max_difference": 1,
+      "uint8_different_pixel_fraction": 0.012561728395061728
+    },
+    "cpu_vs_gpu_no_tf32": {
+      "raw_max_abs_difference": 0.000244140625,
+      "raw_mean_abs_difference": 3.2724568873275947e-05,
+      "uint8_max_difference": 1,
+      "uint8_different_pixel_fraction": 1.02880658436214e-05
+    },
+    "gpu_default_vs_no_tf32": {
+      "raw_max_abs_difference": 0.14373779296875,
+      "raw_mean_abs_difference": 0.01650912308398588,
+      "uint8_max_difference": 1,
+      "uint8_different_pixel_fraction": 0.01257201646090535
+    },
+    "gpu_default_repeat": {
+      "raw_max_abs_difference": 0.0,
+      "raw_mean_abs_difference": 0.0,
+      "uint8_max_difference": 0,
+      "uint8_different_pixel_fraction": 0.0
+    }
+  }
+}

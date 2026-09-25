@@ -68,11 +68,19 @@ re-encode these assets to make extensions agree.
    CUDA runtime 11.8, cuDNN 90100, driver 550.54.14, glibc 2.28.
 2. **Source-behavior regression:** fixtures from unchanged upstream source run on
    modern CPU, with exact runtime and hashes recorded in tests/fixtures.
-3. **Migrated inference:** automated tests and full-size local runs are recorded
-   separately in `docs/reproduction-status.md`.
+3. **Migrated inference:** local tests/full-size runs and user-reported A10
+   inference plus CPU/GPU/TF32 comparisons are recorded in
+   `docs/reproduction-status.md`. Server test output was OK with one expected skip.
 4. **Historical/paper equivalence:** not established. No historical GPU output,
    original TensorFlow comparison, training run, or paper metrics are claimed.
 
 Float32 does not itself disable TF32 or guarantee CPU/CUDA equality. The run
 record captures actual backend flags; performance and precision settings are not
 silently changed by the migration.
+
+For the first gray pair on the reported A10, disabling TF32 reduced maximum
+CPU/GPU raw error from 0.1436920166015625 to 0.000244140625, and differing saved
+pixels from 1221 to 1 of 97200. Both comparisons had a maximum uint8 difference
+of one level. This supports explicit TF32-off reference comparisons, not a
+blanket claim of cross-device equality. The default GPU path repeated exactly
+once in the same process; that is not a determinism guarantee across runs or GPUs.

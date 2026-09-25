@@ -44,7 +44,8 @@ outputs/                         运行产生的PNG和JSON（Git忽略）
 
 选定服务器基线：Linux x86_64、glibc 2.28、NVIDIA A10、驱动550.54.14，
 Python 3.11.16、torch 2.7.1+cu118、torchvision 0.22.1+cu118。
-用户已验证基础GPU卷积前向和反向；迁移后DenseFuse的服务器运行仍须另行验证。
+用户已在该服务器完成回归测试（17项，1项按预期跳过）、第一对灰度图CUDA推理，
+以及同环境CPU/GPU和TF32对照；详见[服务器实测记录](docs/reproduction-status.md#server-a10-evidence)。
 
 新建环境，在仓库根目录执行：
 
@@ -164,6 +165,11 @@ python -B -m unittest discover -s tests -v
 参考张量来自原始源码在现代CPU运行时的执行，见[fixture说明](tests/fixtures/README.md)。
 
 验证环境、实际结果和未验证项目见[reproduction status](docs/reproduction-status.md)。
+
+第一对灰度图的A10实测：默认GPU与CPU相比，1221/97200个保存像素相差1灰度级；
+关闭TF32后只剩1个像素相差1灰度级，最大原始浮点差为0.000244140625。
+后续数值对齐采用显式关闭TF32的独立对照，当前CLI默认行为不变。
+这些结果来自一对图像，不能推广为全部数据或论文复现结论。
 
 ## 10. Known differences and limitations
 
