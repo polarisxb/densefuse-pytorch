@@ -6,9 +6,7 @@ import numpy as np
 import torch
 from PIL import Image
 from torch.autograd import Variable
-from torch.utils.serialization import load_lua
 from args_fusion import args
-from scipy.misc import imread, imsave, imresize
 import matplotlib as mpl
 import cv2
 from torchvision import datasets, transforms
@@ -99,14 +97,16 @@ def load_dataset(image_path, BATCH_SIZE, num_imgs=None):
 
 
 def get_image(path, height=256, width=256, mode='L'):
-    if mode == 'L':
-        image = imread(path, mode=mode)
-    elif mode == 'RGB':
-        image = Image.open(path).convert('RGB')
-
+    # Preserve scipy.misc's uint8 L/RGB path and nearest interpolation.
+    # Unresized RGB inference still receives a PIL image.
+    if mode not in ('L', 'RGB'):
+        raise ValueError("Image mode must be 'L' or 'RGB'")
+    with Image.open(path) as source:
+        image = source.convert(mode)
     if height is not None and width is not None:
-        image = imresize(image, [height, width], interp='nearest')
-    return image
+        image = image.resize((width, height), Image.Resampling.NEAREST)
+        return np.array(image)
+    return np.array(image) if mode == 'L' else image
 
 
 def get_train_images_auto(paths, height=256, width=256, mode='RGB'):
@@ -151,6 +151,9 @@ def colormap():
 
 
 def save_images(path, data):
+    # The caller already clamps and truncates. Never contrast-stretch pixels.
+    if data.dtype != np.uint8:
+        raise TypeError('save_images expects uint8 pixels without rescaling')
     # if isinstance(paths, str):
     #     paths = [paths]
     #
@@ -165,7 +168,7 @@ def save_images(path, data):
 
     if data.shape[2] == 1:
         data = data.reshape([data.shape[0], data.shape[1]])
-    imsave(path, data)
+    Image.fromarray(data).save(path)
 
     # for i, path in enumerate(paths):
     #     data = datas[i]

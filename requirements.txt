@@ -1,0 +1,8 @@
+# Direct dependency pins for the selected reproduction environment.
+# Install the appropriate official torch/torchvision wheels separately first.
+numpy==1.26.4
+scipy==1.13.1
+pillow==10.4.0
+matplotlib==3.9.2
+tqdm==4.67.1
+opencv-python-headless==4.10.0.84

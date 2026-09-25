@@ -1,0 +1,14 @@
+# Existing upstream bytecode/IDE files remain tracked; ignore new local files.
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.venv/
+.conda/
+.idea/
+outputs/
+images/IV_images/
+images/test-RGB/
+models/1e*/
+models/loss/1e*/
+*.egg-info/

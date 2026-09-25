@@ -1,0 +1,96 @@
+{
+  "baseline": "Unmodified upstream source executed on a modern CPU runtime; not historical-runtime or paper equivalence.",
+  "upstream_commit": "4394b63e9295db1c6b7a5c3664551c90f0605f2b",
+  "runtime": {
+    "python": "3.13.2",
+    "torch": "2.8.0+cpu",
+    "torchvision": "0.23.0+cpu",
+    "numpy": "2.2.4",
+    "pillow": "12.3.0",
+    "device": "cpu",
+    "threads": 1,
+    "mkldnn_enabled": true
+  },
+  "tolerance": {
+    "atol": 0.0001,
+    "rtol": 1e-05
+  },
+  "source_sha256": {
+    "net.py": "c84e53354548cd5160d4d3d35c0779f379398333e00823aa1ddd7e5023d70cfc",
+    "fusion_strategy.py": "e0bb395a7eb7e26ee68934a884e9b66d6c85bde3f1f40c617c115fdf184580c3",
+    "train_densefuse.py": "4717a8a6697891baa8c911c4940677a6efb61c80399773bfae5b642e09a73e77",
+    "args_fusion.py": "e25b7cd7832ca9b7e6e34a935cac36e90dc77c5b36d98ba597b91f8f3e1da4a0",
+    "pytorch_msssim/__init__.py": "a04e535fcf0ae5aee5f32672dd961dae1865f36b6406ebf29533ebf27a1ed779"
+  },
+  "cases": {
+    "L": {
+      "inputs": [
+        {
+          "archive": "IV_images.zip",
+          "member": "IV_images/IR1.png",
+          "sha256": "48c385413b4a0bef685c81ad79e7be217a2187b73c2f453be79777200bb4be42",
+          "crop_xyxy": [
+            0,
+            0,
+            32,
+            32
+          ]
+        },
+        {
+          "archive": "IV_images.zip",
+          "member": "IV_images/VIS1.png",
+          "sha256": "c8f49cec84bfdefb1ad2522a2749444925e76f9d43bb972e365c1112deacd290",
+          "crop_xyxy": [
+            0,
+            0,
+            32,
+            32
+          ]
+        }
+      ],
+      "weight": "densefuse_gray.model",
+      "weight_sha256": "b34cf3650f04161b31ac2467decfeedf7eba39165b7618f846e0f298ecd2ac65",
+      "output_shape": [
+        1,
+        1,
+        32,
+        32
+      ]
+    },
+    "RGB": {
+      "inputs": [
+        {
+          "archive": "test-RGB.zip",
+          "member": "test-RGB/IR1.jpg",
+          "sha256": "6e92b5556be3c4bd1bc942db83f48061df0fa210a044b72f4008061b79a69641",
+          "crop_xyxy": [
+            0,
+            0,
+            24,
+            24
+          ]
+        },
+        {
+          "archive": "test-RGB.zip",
+          "member": "test-RGB/VIS1.jpg",
+          "sha256": "25773f923fef4ca2b2c9191e036fbc8a9fc7a7e3f58ca2025b9c93e19c863ea0",
+          "crop_xyxy": [
+            0,
+            0,
+            24,
+            24
+          ]
+        }
+      ],
+      "weight": "densefuse_rgb.model",
+      "weight_sha256": "d1829f47c0ff02ecfc294907655384eebc911a00deb89b91e354ae47c8728ea5",
+      "output_shape": [
+        1,
+        3,
+        24,
+        24
+      ]
+    }
+  },
+  "source_hash_normalization": "CRLF converted to LF before SHA256"
+}

@@ -1,0 +1,7 @@
+name: densefuse
+dependencies:
+  - python=3.11.16
+  - pip
+# Install requirements-cu118.txt and requirements.txt separately after activation.
+# Keeping wheel indexes separate avoids resolving scientific packages on the
+# PyTorch-only index. See README for the exact commands.
