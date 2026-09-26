@@ -1,0 +1,230 @@
+{
+  "record_type": "transcribed_server_batch_stdout",
+  "provenance": {
+    "source": "User-provided terminal output from the 21-pair diagnostic command",
+    "assistant_ran_server_commands": false,
+    "full_summary_json_supplied": false,
+    "server_pngs_and_raw_tensors_available_to_assistant": false,
+    "per_pair_float_precision": "Printed to 8 decimal places; preserved as strings without reconstructing hidden precision",
+    "aggregate_precision": "Copied from the full-precision aggregate JSON printed by the command",
+    "absolute_home_path_omitted": true,
+    "repository_revision": null,
+    "runtime_and_backend_confirmation": "Not included in supplied stdout; prior server context and diagnostic command are recorded separately"
+  },
+  "prior_server_context": {
+    "gpu": "NVIDIA A10",
+    "torch": "2.7.1+cu118",
+    "cpu_threads": 32
+  },
+  "diagnostic_command_configuration": {
+    "mode": "L",
+    "dtype": "float32",
+    "fusion": "arithmetic_mean",
+    "cudnn_allow_tf32": false,
+    "matmul_allow_tf32": false,
+    "model": "models/densefuse_gray.model",
+    "indices": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21
+    ]
+  },
+  "server_report_relative_path": "outputs/a10-gray21-no-tf32-20260926T042245284922Z/summary.json",
+  "aggregate": {
+    "completed_pairs": 21,
+    "total_pixels": 6199556,
+    "worst_raw_max_abs_difference": 0.000396728515625,
+    "pixel_weighted_raw_mean_abs_difference": 4.171648965373742e-05,
+    "worst_uint8_max_difference": 1,
+    "total_different_pixels": 40,
+    "different_pixel_fraction": 6.4520749550451675e-06
+  },
+  "per_pair_stdout": [
+    {
+      "index": 1,
+      "raw_max_abs_difference_rounded": "0.00024414",
+      "raw_mean_abs_difference_rounded": "0.00003272",
+      "uint8_max_difference": 1,
+      "different_pixels": 1,
+      "pixel_count": 97200
+    },
+    {
+      "index": 2,
+      "raw_max_abs_difference_rounded": "0.00035095",
+      "raw_mean_abs_difference_rounded": "0.00001881",
+      "uint8_max_difference": 1,
+      "different_pixels": 15,
+      "pixel_count": 313472
+    },
+    {
+      "index": 3,
+      "raw_max_abs_difference_rounded": "0.00024414",
+      "raw_mean_abs_difference_rounded": "0.00003863",
+      "uint8_max_difference": 0,
+      "different_pixels": 0,
+      "pixel_count": 257550
+    },
+    {
+      "index": 4,
+      "raw_max_abs_difference_rounded": "0.00032043",
+      "raw_mean_abs_difference_rounded": "0.00003939",
+      "uint8_max_difference": 1,
+      "different_pixels": 4,
+      "pixel_count": 307200
+    },
+    {
+      "index": 5,
+      "raw_max_abs_difference_rounded": "0.00028992",
+      "raw_mean_abs_difference_rounded": "0.00004640",
+      "uint8_max_difference": 0,
+      "different_pixels": 0,
+      "pixel_count": 97200
+    },
+    {
+      "index": 6,
+      "raw_max_abs_difference_rounded": "0.00036621",
+      "raw_mean_abs_difference_rounded": "0.00004681",
+      "uint8_max_difference": 1,
+      "different_pixels": 3,
+      "pixel_count": 442368
+    },
+    {
+      "index": 7,
+      "raw_max_abs_difference_rounded": "0.00030518",
+      "raw_mean_abs_difference_rounded": "0.00003730",
+      "uint8_max_difference": 0,
+      "different_pixels": 0,
+      "pixel_count": 195160
+    },
+    {
+      "index": 8,
+      "raw_max_abs_difference_rounded": "0.00028992",
+      "raw_mean_abs_difference_rounded": "0.00003499",
+      "uint8_max_difference": 0,
+      "different_pixels": 0,
+      "pixel_count": 78400
+    },
+    {
+      "index": 9,
+      "raw_max_abs_difference_rounded": "0.00033569",
+      "raw_mean_abs_difference_rounded": "0.00004884",
+      "uint8_max_difference": 1,
+      "different_pixels": 1,
+      "pixel_count": 442368
+    },
+    {
+      "index": 10,
+      "raw_max_abs_difference_rounded": "0.00039673",
+      "raw_mean_abs_difference_rounded": "0.00005032",
+      "uint8_max_difference": 1,
+      "different_pixels": 2,
+      "pixel_count": 442368
+    },
+    {
+      "index": 11,
+      "raw_max_abs_difference_rounded": "0.00033569",
+      "raw_mean_abs_difference_rounded": "0.00003466",
+      "uint8_max_difference": 0,
+      "different_pixels": 0,
+      "pixel_count": 88673
+    },
+    {
+      "index": 12,
+      "raw_max_abs_difference_rounded": "0.00028992",
+      "raw_mean_abs_difference_rounded": "0.00002903",
+      "uint8_max_difference": 1,
+      "different_pixels": 3,
+      "pixel_count": 279000
+    },
+    {
+      "index": 13,
+      "raw_max_abs_difference_rounded": "0.00030518",
+      "raw_mean_abs_difference_rounded": "0.00003351",
+      "uint8_max_difference": 0,
+      "different_pixels": 0,
+      "pixel_count": 279000
+    },
+    {
+      "index": 14,
+      "raw_max_abs_difference_rounded": "0.00036621",
+      "raw_mean_abs_difference_rounded": "0.00004804",
+      "uint8_max_difference": 1,
+      "different_pixels": 2,
+      "pixel_count": 442368
+    },
+    {
+      "index": 15,
+      "raw_max_abs_difference_rounded": "0.00035095",
+      "raw_mean_abs_difference_rounded": "0.00005203",
+      "uint8_max_difference": 1,
+      "different_pixels": 1,
+      "pixel_count": 442368
+    },
+    {
+      "index": 16,
+      "raw_max_abs_difference_rounded": "0.00023651",
+      "raw_mean_abs_difference_rounded": "0.00003345",
+      "uint8_max_difference": 1,
+      "different_pixels": 1,
+      "pixel_count": 279000
+    },
+    {
+      "index": 17,
+      "raw_max_abs_difference_rounded": "0.00027466",
+      "raw_mean_abs_difference_rounded": "0.00003415",
+      "uint8_max_difference": 0,
+      "different_pixels": 0,
+      "pixel_count": 279000
+    },
+    {
+      "index": 18,
+      "raw_max_abs_difference_rounded": "0.00028992",
+      "raw_mean_abs_difference_rounded": "0.00003925",
+      "uint8_max_difference": 1,
+      "different_pixels": 1,
+      "pixel_count": 279000
+    },
+    {
+      "index": 19,
+      "raw_max_abs_difference_rounded": "0.00028992",
+      "raw_mean_abs_difference_rounded": "0.00003123",
+      "uint8_max_difference": 1,
+      "different_pixels": 2,
+      "pixel_count": 273125
+    },
+    {
+      "index": 20,
+      "raw_max_abs_difference_rounded": "0.00036621",
+      "raw_mean_abs_difference_rounded": "0.00004981",
+      "uint8_max_difference": 1,
+      "different_pixels": 3,
+      "pixel_count": 442368
+    },
+    {
+      "index": 21,
+      "raw_max_abs_difference_rounded": "0.00038147",
+      "raw_mean_abs_difference_rounded": "0.00005251",
+      "uint8_max_difference": 1,
+      "different_pixels": 1,
+      "pixel_count": 442368
+    }
+  ]
+}

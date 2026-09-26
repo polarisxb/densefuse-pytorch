@@ -127,12 +127,53 @@ This reuses the migrated CLI and does not edit source files. The sidecar records
 the actual flags. It does not enable deterministic algorithms or promise bitwise
 CPU/CUDA equality.
 
+## All 21 gray pairs with TF32 disabled
+
+The user next executed the supplied batch comparison command for IR1/VIS1
+through IR21/VIS21. All 21 pairs completed. The diagnostic explicitly disabled
+cuDNN and matmul TF32, reused one CPU and one CUDA model, and saved both PNGs
+and their sidecars. The supplied functions check finite output before saving.
+The transcript and exact printed aggregate are archived in
+[a10-gray21-no-tf32.json](experiments/a10-gray21-no-tf32.json).
+
+| Aggregate observation | Reported value |
+| --- | ---: |
+| Completed pairs | 21 / 21 |
+| Total gray pixels | 6,199,556 |
+| Maximum raw absolute difference | 0.000396728515625 |
+| Pixel-weighted mean raw absolute difference | 0.00004171648965373742 |
+| Maximum saved uint8 difference | 1 |
+| Differing saved pixels | 40 |
+| Differing saved pixel fraction | 0.0000064520749550451675 |
+| Differing saved pixel percentage | approximately 0.0006452075% |
+| Pairs with identical saved pixels | 7 |
+
+The highest raw maximum was on pair 10. Pair 2 had the most differing saved
+pixels (15); pairs 3, 5, 7, 8, 11, 13, and 17 had identical saved pixels. Counts
+were independently summed from the transcript and agree with the aggregate.
+Per-pair raw maxima/means were printed to eight decimal places and are preserved
+as rounded strings; the missing digits are not reconstructed. The aggregate
+mean is weighted by pixel count, not the unweighted mean of image means.
+
+Server report location relative to the repository:
+`outputs/a10-gray21-no-tf32-20260926T042245284922Z/summary.json`.
+
+This is evidence of close CPU/GPU agreement across the bundled gray sample set
+under the tested TF32-off procedure. The observed maxima are not a predeclared
+acceptance threshold and do not establish paper quality or correctness by
+themselves. No new numerical tolerance is imposed after seeing these results.
+The full batch summary and per-image sidecars/PNGs have not been transferred;
+their runtime, Git state and individual hashes are not independently checked.
+The archive distinguishes the preceding verified environment context from the
+configuration specified by the batch command.
+
 ## Still unverified
 
 - Server RGB inference and server PNG visual inspection by the assistant.
 - Historical PyTorch or original TensorFlow numerical equivalence.
-- Full COCO training, resume equivalence, paper evaluation metrics, and all-pair
-  benchmark results.
+- Full COCO training, resume equivalence, paper evaluation metrics, and performance
+  benchmarks. All-pair gray device comparison is reported above; it is not a
+  fusion-quality or speed benchmark.
 
 ## Repeating the default server check
 
@@ -147,6 +188,6 @@ python -B test_image.py --device cuda --output outputs/a10-gray-1.png
 Inspect both `a10-gray-1.png` and `a10-gray-1.png.json`. Record raw shape, finite
 status, actual GPU/backend flags, and hashes. The CPU reference-fixture tests
 remain CPU tests even when launched on a GPU host; they do not establish CUDA
-equivalence. The single-pair device comparison above is separately reported;
-all-pair and cross-process validation remain future work. Preserve the
+equivalence. Single-pair and all-pair gray device comparisons are separately
+reported above; cross-process repeatability remains future work. Preserve the
 scheduler's device allocation.

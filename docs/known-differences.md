@@ -69,7 +69,8 @@ re-encode these assets to make extensions agree.
 2. **Source-behavior regression:** fixtures from unchanged upstream source run on
    modern CPU, with exact runtime and hashes recorded in tests/fixtures.
 3. **Migrated inference:** local tests/full-size runs and user-reported A10
-   inference plus CPU/GPU/TF32 comparisons are recorded in
+   inference plus CPU/GPU/TF32 comparisons (including all 21 bundled gray pairs
+   with TF32 disabled) are recorded in
    `docs/reproduction-status.md`. Server test output was OK with one expected skip.
 4. **Historical/paper equivalence:** not established. No historical GPU output,
    original TensorFlow comparison, training run, or paper metrics are claimed.
@@ -84,3 +85,10 @@ pixels from 1221 to 1 of 97200. Both comparisons had a maximum uint8 difference
 of one level. This supports explicit TF32-off reference comparisons, not a
 blanket claim of cross-device equality. The default GPU path repeated exactly
 once in the same process; that is not a determinism guarantee across runs or GPUs.
+
+Across all 21 bundled gray pairs, the reported TF32-off maximum raw difference
+was 0.000396728515625; 40 of 6,199,556 saved pixels differed, each by one level.
+This is an observed sample-set baseline, not an independently chosen error
+threshold, a repeated-run determinism test, or a paper quality evaluation. The
+complete batch JSON and PNGs have not been supplied for local inspection; the
+archive preserves the user's terminal aggregate and rounded per-pair output.
