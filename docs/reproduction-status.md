@@ -61,8 +61,9 @@ do not interpret this as an independent final code-review approval.
 
 The user ran the commands on the school server and provided terminal output,
 the inference JSON, and the comparison JSON. The assistant checked source hashes
-against Git blobs and input/weight hashes against the local assets. The server
-PNG and raw output tensors were not transferred for independent inspection.
+against Git blobs and input/weight hashes against the local assets. Individual
+server PNGs and raw output tensors were not transferred for independent inspection;
+the later three-pair contact-sheet inspection is recorded below.
 The transcribed measurements and provenance are preserved in
 [a10-gray-1.json](experiments/a10-gray-1.json); absolute home paths are omitted.
 
@@ -167,9 +168,39 @@ their runtime, Git state and individual hashes are not independently checked.
 The archive distinguishes the preceding verified environment context from the
 configuration specified by the batch command.
 
+## Visual inspection of pairs 02, 10 and 21
+
+The user supplied `focus_02_10_21.png`, a 1800×1440 RGBA contact sheet with IR,
+VIS and fused columns. It was opened at its original contact-sheet resolution;
+the panels themselves are resampled views, not the individual full-resolution
+server outputs. Artifact SHA256:
+`9cd33160c0c4f9d36e4a694e4407396d7c935ab88d0b8279624cca1c1c8fb3cf`.
+The image itself was not added to the repository. Structured observations are in
+[the visual review record](experiments/focus-02-10-21-visual-review.json).
+
+| Pair | Information visible in the fused panel | Limitation visible at this scale |
+| --- | --- | --- |
+| 02 | IR pedestrians/vehicles and VIS illuminated awning/sign detail | Pedestrian prominence and contrast weaken; fine detail is soft. |
+| 10 | IR dark winding structure and bridge/railing geometry, with VIS vegetation/background texture | Strong light-dark separation is reduced; the fused image appears gray and flat. The AUTO text is inherited from the IR input. |
+| 21 | Person and walkway geometry with VIS background texture | The bright IR person becomes less distinct; local contrast and perceived sharpness are reduced. |
+
+No obvious wrong scene, all-black/all-white collapse, gross displacement, or
+large new checkerboard pattern was seen in these three panels. This supports
+basic visual plausibility only. The visible contrast loss is a research
+observation, not a reason to change the compatibility baseline. The prior
+CPU/GPU differences are too small to explain this degree of visual contrast
+change; the specific algorithmic cause has not been isolated by an ablation.
+
+There is no paper/reference fused output available here, so no image-quality
+score or claim of paper-equivalent visual performance is assigned. Remaining
+overview pages, pixel-level alignment and original-resolution crops still need
+inspection. Preserve the original fusion, output activation and postprocessing
+until a separate reference comparison establishes what should change, if anything.
+
 ## Still unverified
 
-- Server RGB inference and server PNG visual inspection by the assistant.
+- Server RGB inference, remaining gray overview pages, and individual
+  full-resolution server output inspection by the assistant.
 - Historical PyTorch or original TensorFlow numerical equivalence.
 - Full COCO training, resume equivalence, paper evaluation metrics, and performance
   benchmarks. All-pair gray device comparison is reported above; it is not a

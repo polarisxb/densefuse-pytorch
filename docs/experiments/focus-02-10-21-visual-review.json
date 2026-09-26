@@ -1,0 +1,67 @@
+{
+  "record_type": "qualitative_contact_sheet_review",
+  "artifact": {
+    "name": "focus_02_10_21.png",
+    "sha256": "9cd33160c0c4f9d36e4a694e4407396d7c935ab88d0b8279624cca1c1c8fb3cf",
+    "size": [
+      1800,
+      1440
+    ],
+    "mode": "RGBA",
+    "format": "PNG",
+    "provided_by_user": true,
+    "opened_at_original_resolution": true,
+    "image_committed_to_repository": false
+  },
+  "scope": {
+    "pair_indices": [
+      2,
+      10,
+      21
+    ],
+    "columns": [
+      "IR",
+      "VIS",
+      "Fused"
+    ],
+    "declared_display_range": [
+      0,
+      255
+    ],
+    "declared_device_and_precision": "CUDA, TF32 disabled",
+    "assessment": "Basic qualitative sanity check, not a numerical quality score",
+    "reference_fused_images_available": false,
+    "full_resolution_individual_server_pngs_available": false
+  },
+  "observations": [
+    {
+      "pair": 2,
+      "retained": "Bright pedestrians/vehicles from IR and illuminated awning/sign detail from VIS remain visible.",
+      "limitation": "Pedestrian prominence and scene contrast are attenuated relative to their stronger source views; details appear soft."
+    },
+    {
+      "pair": 10,
+      "retained": "The winding dark structure and bridge/railing geometry from IR coexist with visible-image vegetation and background texture.",
+      "limitation": "Strong dark-light separation is reduced and much of the fused scene is concentrated in mid-gray tones. The AUTO text is already present in the IR input."
+    },
+    {
+      "pair": 21,
+      "retained": "The person and walkway geometry remain visible alongside background texture from VIS.",
+      "limitation": "The bright IR person is less distinct against the background; local contrast and perceived sharpness are reduced."
+    }
+  ],
+  "sanity_check": "No obvious wrong scene, black/white collapse, gross geometric displacement, or large newly visible checkerboard artifact observed at contact-sheet scale.",
+  "interpretation": "Supports a functioning fusion path with visible contrast attenuation. Existing CPU/GPU comparisons do not suggest that device precision explains this degree of visual contrast change. The specific algorithmic cause has not been isolated.",
+  "limits": [
+    "The contact sheet resamples individual images and cannot certify pixel-level registration or subtle artifacts.",
+    "Only three of the 21 pairs were visually reviewed here.",
+    "No paper/reference fused image or independent quality metric was available.",
+    "Do not alter fusion, final activation, normalization, or contrast to improve appearance during compatibility reproduction."
+  ],
+  "next_actions": [
+    "Preserve the current output baseline and contact-sheet hash.",
+    "Inspect remaining overview pages and original-resolution image crops when supplied.",
+    "Compare with the original reference implementation/results before attributing contrast loss or correcting the algorithm.",
+    "Prepare the training dataset manifest and loss/gradient checks as a separate reproduction stage."
+  ]
+}

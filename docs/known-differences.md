@@ -92,3 +92,9 @@ This is an observed sample-set baseline, not an independently chosen error
 threshold, a repeated-run determinism test, or a paper quality evaluation. The
 complete batch JSON and PNGs have not been supplied for local inspection; the
 archive preserves the user's terminal aggregate and rounded per-pair output.
+
+A later user-provided contact sheet of pairs 02, 10 and 21 was visually inspected.
+It shows information from both modalities with visibly attenuated contrast,
+particularly on 10 and 21, and no obvious gross rendering failure. This is not a
+paper-reference comparison, and the individual full-resolution server PNGs
+remain unavailable. No contrast enhancement or model changes were made.
